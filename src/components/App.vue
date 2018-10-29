@@ -64,20 +64,12 @@
         :slots="{
           title: 'Permits',
           items: function(state) {
-            /* if (state.sources['liPermits']) {
-              if (state.sources['liPermits'].data) { */
-                var data = state.sources['liPermits'].data.rows;
-                var rows = data.map(function(row){
-                  var itemRow = row;
-                  return itemRow;
-                });
-                return rows;
-              /* } else {
-                return [];
-              }
-            } else {
-              return [];
-            } */
+            var data = state.sources['liPermits'].data.rows;
+            var rows = data.map(function(row){
+              var itemRow = row;
+              return itemRow;
+            });
+            return rows;
           },
         }"
         :options="{
@@ -88,11 +80,7 @@
             {
               label: 'Date',
               value: function(state, item){
-                /* if (item) { */
-                  return item.permitissuedate
-                /* } else {
-                  return ''
-                } */
+                return item.permitissuedate
               },
               nullValue: 'no date available',
               transforms: [
@@ -102,31 +90,19 @@
             {
               label: 'ID',
               value: function(state, item){
-                /* if (item) { */
-                  return `<a target='_blank' href='http://li.phila.gov/#details?entity=permits&eid=`+item.permitnumber+`&key=`+item.addresskey+`&address=`+item.address+`'>`+item.permitnumber+` <i class='fa fa-external-link'></i></a>`
-                /* } else {
-                  return ''
-                } */
+                return `<a target='_blank' href='http://li.phila.gov/#details?entity=permits&eid=`+item.permitnumber+`&key=`+item.addresskey+`&address=`+item.address+`'>`+item.permitnumber+` <i class='fa fa-external-link'></i></a>`
               }
             },
             {
               label: 'Description',
               value: function(state, item){
-                /* if (item) { */
-                  return item.permitdescription
-                /* } else {
-                  return ''
-                } */
+                return item.permitdescription
               }
             },
             {
               label: 'Status',
               value: function(state, item){
-                /* if (item) { */
-                  return item.status
-                /* } else {
-                  return ''
-                } */
+                return item.status
               }
             },
           ],
@@ -156,21 +132,12 @@
         :slots="{
           title: 'DOR Docs',
           items: function(state) {
-            var id;
-            /* if (state.parcels.dor.data) {
-              if (state.parcels.dor.data[0]) { */
-                id = state.parcels.dor.data[0].properties.OBJECTID;
-                if (state.sources.dorDocuments.targets[id]) {
-                  return state.sources.dorDocuments.targets[id].data;
-                } else {
-                  return [];
-                }
-              /* } else {
-                return [];
-              }
+            var id = state.parcels.dor.data[0].properties.OBJECTID;
+            if (state.sources.dorDocuments.targets[id]) {
+              return state.sources.dorDocuments.targets[id].data;
             } else {
               return [];
-            } */
+            }
           },
         }"
         :options="{
