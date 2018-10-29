@@ -19,7 +19,7 @@ module.exports = {
     // host: process.env.WEBPACK_DEV_HOST,
     host: 'localhost',
     // port: process.env.WEBPACK_DEV_PORT
-    port: 8080
+    port: 8082
   },
   output: {
     path: path.resolve(__dirname, 'public'),

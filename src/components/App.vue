@@ -27,37 +27,26 @@
             {
               label: 'address',
               value: function(state) {
-                if (state.geocode.data) {
-                  return state.geocode.data.properties.street_address;
-                } else {
-                  return '';
-                }
+                return state.geocode.data.properties.street_address || '';
               },
             },
             {
               label: 'opa #',
               value: function(state) {
-                if (state.geocode.data) {
-                  return state.geocode.data.properties.opa_account_num;
-                } else {
-                  return '';
-                }
+                return state.geocode.data.properties.opa_account_num;
               },
             },
             {
               label: 'owner',
               value: function(state) {
-                if (state.sources.opa.data) {
-                  return state.sources.opa.data.owner_1;
-                } else {
-                  return '';
-                }
+                return state.sources.opa.data.owner_1;
               },
             },
           ]
         }"
         :options="{
           id: 'verticalTableId',
+          dataSources: ['opa'],
           externalLink: {
             action: function() {
               return 'See more';
@@ -69,30 +58,124 @@
       />
 
       <div class="margin-sides-20 component-label">horizontal-table:</div>
+
+      <horizontal-table
+        class="margin-20 medium-10"
+        :slots="{
+          title: 'Permits',
+          items: function(state) {
+            /* if (state.sources['liPermits']) {
+              if (state.sources['liPermits'].data) { */
+                var data = state.sources['liPermits'].data.rows;
+                var rows = data.map(function(row){
+                  var itemRow = row;
+                  return itemRow;
+                });
+                return rows;
+              /* } else {
+                return [];
+              }
+            } else {
+              return [];
+            } */
+          },
+        }"
+        :options="{
+          id: 'liPermits',
+          dataSources: ['liPermits'],
+          limit: 5,
+          fields: [
+            {
+              label: 'Date',
+              value: function(state, item){
+                /* if (item) { */
+                  return item.permitissuedate
+                /* } else {
+                  return ''
+                } */
+              },
+              nullValue: 'no date available',
+              transforms: [
+                'date'
+              ]
+            },
+            {
+              label: 'ID',
+              value: function(state, item){
+                /* if (item) { */
+                  return `<a target='_blank' href='http://li.phila.gov/#details?entity=permits&eid=`+item.permitnumber+`&key=`+item.addresskey+`&address=`+item.address+`'>`+item.permitnumber+` <i class='fa fa-external-link'></i></a>`
+                /* } else {
+                  return ''
+                } */
+              }
+            },
+            {
+              label: 'Description',
+              value: function(state, item){
+                /* if (item) { */
+                  return item.permitdescription
+                /* } else {
+                  return ''
+                } */
+              }
+            },
+            {
+              label: 'Status',
+              value: function(state, item){
+                /* if (item) { */
+                  return item.status
+                /* } else {
+                  return ''
+                } */
+              }
+            },
+          ],
+          sort: {
+            getValue: function(item) {
+              return item.permitissuedate;
+            },
+            order: 'desc'
+          },
+          externalLink: {
+            action: function(count) {
+              return 'See ' + count + ' older permits at L&I Property History';
+              },
+            name: 'L&I Property History',
+            href: function(state) {
+              var address = state.geocode.data.properties.street_address;
+              var addressEncoded = encodeURIComponent(address);
+              return 'http://li.phila.gov/#summary?address=' + addressEncoded;
+            }
+          }
+        }"
+      />
+
+
       <horizontal-table
         class="margin-20 medium-10"
         :slots="{
           title: 'DOR Docs',
           items: function(state) {
             var id;
-            if (state.parcels.dor.data) {
-              if (state.parcels.dor.data[0]) {
+            /* if (state.parcels.dor.data) {
+              if (state.parcels.dor.data[0]) { */
                 id = state.parcels.dor.data[0].properties.OBJECTID;
                 if (state.sources.dorDocuments.targets[id]) {
                   return state.sources.dorDocuments.targets[id].data;
                 } else {
                   return [];
                 }
-              } else {
+              /* } else {
                 return [];
               }
             } else {
               return [];
-            }
+            } */
           },
         }"
         :options="{
           id: 'dorDocs',
+          dataSources: ['dorDocuments'],
           limit: 2,
           fields: [
             {
@@ -116,7 +199,7 @@
             {
               label: 'Number',
               value: function(state, item){
-                return item.attributes.R_NUM;
+                return item.attributes.DOCUMENT_ID;
               }
             },
           ],
@@ -124,7 +207,7 @@
             action: function(count) {
               return 'See ' + count + ' older DorDocs at Atlas';
             },
-            name: 'L&I Property History',
+            name: 'Dor Docs',
             href: function(state) {
               return 'https://atlas.phila.gov/';
             }

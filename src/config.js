@@ -5,7 +5,7 @@ let config = {
   baseConfig: 'https://cdn.rawgit.com/ajrothwell/atlas_base_config/d95ed79d/config.js',
   gatekeeperKey: '82fe014b6575b8c38b44235580bc8b11',
   router: {
-    enabled: false
+    enabled: true
   },
   transforms,
   parcels: {
@@ -38,6 +38,15 @@ let config = {
         },
         success: function(data) {
           return data[0];
+        }
+      }
+    },
+    liPermits: {
+      type: 'http-get',
+      url: 'https://phl.carto.com/api/v2/sql',
+      options: {
+        params: {
+          q: function(feature){ return "select * from li_permits where address = '" + feature.properties.street_address + "' or addresskey = '" + feature.properties.li_address_key.toString() + "'"},
         }
       }
     },
@@ -110,11 +119,12 @@ let config = {
               }
 
               where += ") or MATCHED_REGMAP = '" + state.parcels.dor.data[0].properties.BASEREG + "'";
+              where += " or REG_MAP_ID = '" + state.parcels.dor.data[0].properties.BASEREG + "'";
             }
 
             return where;
           },
-          outFields: "R_NUM, DISPLAY_DATE, DOCUMENT_TYPE, GRANTORS, GRANTEES",
+          outFields: "DOCUMENT_ID, DISPLAY_DATE, DOCUMENT_TYPE, GRANTORS, GRANTEES",
           returnDistinctValues: 'true',
           returnGeometry: 'false',
           f: 'json',
