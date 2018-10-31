@@ -17,7 +17,39 @@
     </header>
 
     <div id="components-root">
+
+
       <address-input />
+
+      <callout
+      />
+      <!-- :slots="{
+      'text': 'test2'
+    }" -->
+
+      <badge
+        :slots="{
+            'title': 'test badge',
+        }"
+      />
+
+      <badge-custom
+        :slots="{
+            'title': 'test badge-custom',
+        }"
+        :options="{
+          'components': [
+            {
+              'type': 'callout'
+            }
+          ]
+          }"
+      />
+
+      <!-- <collection-summary
+        :slots="{}"
+      /> -->
+
 
       <div class="margin-sides-20 component-label">vertical-table:</div>
       <vertical-table
@@ -182,6 +214,16 @@
         }"
       />
 
+      <external-link
+        :slots="{}"
+        :options="{
+          'href': 'https://atlas.phila.gov',
+          'data': {
+              'name': 'text text'
+            }
+          }"
+      />
+
     </div>
   </div>
 </template>
@@ -193,12 +235,22 @@
   const VerticalTable = philaVueComps.VerticalTable;
   const HorizontalTable = philaVueComps.HorizontalTable;
   const AddressInput = philaVueComps.AddressInput;
+  const Callout = philaVueComps.Callout;
+  const Badge = philaVueComps.Badge;
+  const BadgeCustom = philaVueComps.BadgeCustom;
+  const CollectionSummary = philaVueComps.CollectionSummary;
+  const ExternalLink = philaVueComps.ExternalLink;
 
   export default {
     components: {
       VerticalTable,
       HorizontalTable,
       AddressInput,
+      Callout,
+      Badge,
+      BadgeCustom,
+      CollectionSummary,
+      ExternalLink,
     },
   };
 
