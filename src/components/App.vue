@@ -19,7 +19,10 @@
     <div id="components-root">
 
 
-      <address-input />
+      <address-input
+        :widthFromConfig="600"
+        :placeholder="'search an address'"
+      />
 
       <callout
       />
