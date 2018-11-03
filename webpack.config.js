@@ -8,7 +8,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: {
-    app: './src/main.js',
+    app: ['./src/index.html', './src/main.js'],
   },
   resolve: {
     mainFields: ['module', 'main', 'browser'],
@@ -28,6 +28,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.html/,
+        loader: 'file-loader?name=[name].[ext]',
+      },
       {
         test: /\.js$/,
         use: 'babel-loader',
@@ -64,12 +68,6 @@ module.exports = {
           enforce: true,
           priority: 5,
         },
-        // mapboard: {
-        //   test: /mapboard/,
-        //   chunks: 'initial',
-        //   name: 'mapboard',
-        //   priority: 10,
-        // },
       },
     },
   },
