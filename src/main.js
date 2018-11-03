@@ -1,5 +1,5 @@
 /*
-                                            .___                                             .__                                         
+                                            .___                                             .__
 _________  __ ____           _________  ____| _/          ____ ___  ________    _____ ______ |  |   ____           _____  ______ ______
 \____ \  \/ // ___\   ______ \____ \  \/ / __ |  ______ _/ __ \\  \/  /\__  \  /     \\____ \|  | _/ __ \   ______ \__  \ \____ \\____ \
 |  |_> >   /\  \___  /_____/ |  |_> >   / /_/ | /_____/ \  ___/ >    <  / __ \|  Y Y  \  |_> >  |_\  ___/  /_____/  / __ \|  |_> >  |_> >
@@ -18,6 +18,8 @@ import config from './config.js'
 
 import '@fortawesome/fontawesome-pro/js/all';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import '../node_modules/phila-standards/dist/css/phila-app.min.css';
+import './styles.css';
 
 import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
 import philaVueDatafetch from '@cityofphiladelphia/phila-vue-datafetch';
