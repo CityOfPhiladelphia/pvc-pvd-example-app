@@ -198,7 +198,8 @@
             {
               label: 'Number',
               value: function(state, item){
-                return item.attributes.DOCUMENT_ID;
+                /* return item.attributes.DOCUMENT_ID; */
+                return item.attributes.R_NUM;
               }
             },
           ],

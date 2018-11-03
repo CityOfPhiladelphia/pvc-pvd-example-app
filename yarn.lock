@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@cityofphiladelphia/phila-vue-comps@1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@cityofphiladelphia/phila-vue-comps/-/phila-vue-comps-1.0.11.tgz#2013dcd30fc85c2f43e1f117ba118dec8a27e20e"
+"@cityofphiladelphia/phila-vue-comps@1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@cityofphiladelphia/phila-vue-comps/-/phila-vue-comps-1.0.13.tgz#9d3cd6e9d1985f292ada9b577ac4194a6d53c66c"
   dependencies:
     axios "^0.18.0"
     escape-html "^1.0.3"
