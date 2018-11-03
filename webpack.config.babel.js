@@ -1,12 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
-
 const env = process.env.NODE_ENV;
 const isDevelopment = env === 'development';
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-module.exports = {
+export default {
   entry: {
     app: ['./src/index.html', './src/main.js'],
   },
@@ -29,12 +27,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.html/,
-        loader: 'file-loader?name=[name].[ext]',
+        test: /\.js/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ]
       },
       {
-        test: /\.js$/,
-        use: 'babel-loader',
+        test: /\.html/,
+        loader: 'file-loader?name=[name].[ext]',
       },
       {
         test: /\.css$/,
@@ -51,12 +54,15 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader'
       }
-    ],
+    ]
   },
   plugins: [
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
     new VueLoaderPlugin()
   ],
+  stats: {
+      colors: true
+  },
+  devtool: 'source-map',
   mode: env,
   optimization: {
     splitChunks: {
