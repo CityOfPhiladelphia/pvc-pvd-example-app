@@ -39,6 +39,7 @@
 
       <badge
         :slots="{
+          title: 'Address or Intersection Found',
           value: function(state) {
             if (state.geocode.data) {
               if (state.geocode.data.ais_feature_type === 'intersection') {
