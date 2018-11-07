@@ -18,41 +18,23 @@
 
     <div id="components-root">
 
-
       <address-input
-        :widthFromConfig="600"
-        :placeholder="'search an address'"
+        :process="'non-mapboard'"
+        :widthFromConfig="500"
+        :placeholder="'testing address input'"
       />
+      <br>
+      <br>
+      <br>
 
-      <callout
+      <configurable-input
+        :process="'non-mapboard'"
+        :widthFromConfig="700"
+        :placeholder="'testing configurable input'"
       />
-      <!-- :slots="{
-      'text': 'test2'
-    }" -->
-
-      <badge
-        :slots="{
-            'title': 'test badge',
-        }"
-      />
-
-      <badge-custom
-        :slots="{
-            'title': 'test badge-custom',
-        }"
-        :options="{
-          'components': [
-            {
-              'type': 'callout'
-            }
-          ]
-          }"
-      />
-
-      <!-- <collection-summary
-        :slots="{}"
-      /> -->
-
+      <br>
+      <br>
+      <br>
 
       <div class="margin-sides-20 component-label">vertical-table:</div>
       <vertical-table
@@ -93,6 +75,18 @@
       />
 
       <div class="margin-sides-20 component-label">horizontal-table:</div>
+
+      <horizontal-table
+        class="margin-20 medium-10"
+        :slots="{
+          title: 'Owner Properties',
+          items: function(state) {
+            var data = state.ownerSearch.data;
+            return data;
+          },
+        }"
+        :options="this.ownerOptions"
+      />
 
       <horizontal-table
         class="margin-20 medium-10"
@@ -161,7 +155,6 @@
         }"
       />
 
-
       <horizontal-table
         class="margin-20 medium-10"
         :slots="{
@@ -178,7 +171,7 @@
         :options="{
           id: 'dorDocs',
           dataSources: ['dorDocuments'],
-          limit: 2,
+          limit: 10,
           fields: [
             {
               label: 'Doc Type',
@@ -201,8 +194,7 @@
             {
               label: 'Number',
               value: function(state, item){
-                /* return item.attributes.DOCUMENT_ID; */
-                return item.attributes.R_NUM;
+                return item.attributes.DOCUMENT_ID;
               }
             },
           ],
@@ -218,15 +210,6 @@
         }"
       />
 
-      <external-link
-        :slots="{}"
-        :options="{
-          'href': 'https://atlas.phila.gov',
-          'data': {
-              'name': 'text text'
-            }
-          }"
-      />
 
     </div>
   </div>
@@ -234,11 +217,11 @@
 
 <script>
   import axios from 'axios';
-
   import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
   const VerticalTable = philaVueComps.VerticalTable;
   const HorizontalTable = philaVueComps.HorizontalTable;
   const AddressInput = philaVueComps.AddressInput;
+  const ConfigurableInput = philaVueComps.ConfigurableInput;
   const Callout = philaVueComps.Callout;
   const Badge = philaVueComps.Badge;
   const BadgeCustom = philaVueComps.BadgeCustom;
@@ -250,54 +233,99 @@
       VerticalTable,
       HorizontalTable,
       AddressInput,
+      ConfigurableInput,
       Callout,
       Badge,
       BadgeCustom,
       CollectionSummary,
       ExternalLink,
     },
+    computed: {
+      ownerOptions() {
+        const options = {
+          id: 'ownerProperties',
+          /* dataSources: ['liPermits'], */
+          /* limit: 5, */
+          fields: [
+            {
+              label: 'Owner',
+              value: function(state, item){
+                return item.properties.opa_owners.toString();
+              },
+              /* nullValue: 'no date available', */
+            },
+            {
+              label: 'Street Address',
+              value: function(state, item, controller) {
+                const test = controller.test
+                /* controller.test(); */
+                return `<a target='_blank' href='https://atlas.phila.gov/#/`+item.properties.street_address+`/property'>`+item.properties.street_address+` <i class='fa fa-external-link'></i></a>`
+                // return '<a href=# onclick="'+test+'()">'+item.properties.street_address+' <i class="fa fa-external-link"></i></a>'
+              }
+            },
+            {
+              label: 'Description',
+              value: function(state, item){
+                /* return item.permitdescription */
+              }
+            },
+            {
+              label: 'Status',
+              value: function(state, item){
+                /* return item.status */
+              }
+            },
+          ],
+          /* sort: {
+            getValue: function(item) {
+              return item.permitissuedate;
+            },
+            order: 'desc'
+          }, */
+          /* externalLink: {
+            action: function(count) {
+              return 'See ' + count + ' older permits at L&I Property History';
+              },
+            name: 'L&I Property History',
+            href: function(state) {
+              var address = state.geocode.data.properties.street_address;
+              var addressEncoded = encodeURIComponent(address);
+              return 'http://li.phila.gov/#summary?address=' + addressEncoded;
+            }
+          } */
+        }
+        return options;
+      }
+    }
   };
-
 </script>
 
 <style scoped>
-
 #app-root {
   height: 100%
 }
-
 #components-root {
   padding: 20px;
   height: 90%;
   overflow-y: auto;
 }
-
 .component-label {
   font-size: 20px;
 }
-
 .margin-sides-20 {
   display: block;
   margin-left: 20px;
   margin-right: 20px;
 }
-
 .margin-20 {
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
-
 .margin-bottom-60 {
   margin-bottom: 60px !important;
 }
-
 .ib {
   display: inline-block;
 }
-
-
-
-
-
 </style>
