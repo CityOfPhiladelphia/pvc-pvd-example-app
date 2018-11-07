@@ -36,6 +36,24 @@
       <br>
       <br>
 
+
+      <badge
+        :slots="{
+          value: function(state) {
+            if (state.geocode.data) {
+              if (state.geocode.data.ais_feature_type === 'intersection') {
+                return state.geocode.data.street_address
+              } else {
+                return state.geocode.data.properties.street_address
+              }
+            } else {
+              return 'no address yet'
+            }
+          }
+        }"
+      />
+
+
       <div class="margin-sides-20 component-label">vertical-table:</div>
       <vertical-table
         class="margin-20 margin-bottom-60 medium-8"
