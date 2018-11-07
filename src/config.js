@@ -4,9 +4,9 @@ import helpers from './util/helpers';
 let config = {
   baseConfig: 'https://cdn.jsdelivr.net/gh/ajrothwell/atlas_base_config@d95ed79deed38e6a59d975bf7aaa5409cdee20bb/config.js',
   gatekeeperKey: '82fe014b6575b8c38b44235580bc8b11',
-  router: {
-    enabled: true
-  },
+  // router: {
+  //   enabled: true
+  // },
   transforms,
   parcels: {
     pwd: {
