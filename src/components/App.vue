@@ -9,7 +9,7 @@
           <div class="app-divide"></div>
           <div class="page-title-container">
             <a href="#/">
-              <h1 class="page-title">PVC-PVD Example App</h1>
+              <h1 class="page-title">Input Example App</h1>
             </a>
           </div>
         </div>

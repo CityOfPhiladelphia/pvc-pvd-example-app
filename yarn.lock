@@ -530,9 +530,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@cityofphiladelphia/phila-vue-comps@https://github.com/CityOfPhiladelphia/phila-vue-comps#6b8e21f08d3f51cc65f7066f75c14753c2bf5602":
+"@cityofphiladelphia/phila-vue-comps@https://github.com/CityOfPhiladelphia/phila-vue-comps#35b54dbd2e3849946537a445dd4b1afcf25ebd46":
   version "1.0.11"
-  resolved "https://github.com/CityOfPhiladelphia/phila-vue-comps#6b8e21f08d3f51cc65f7066f75c14753c2bf5602"
+  resolved "https://github.com/CityOfPhiladelphia/phila-vue-comps#35b54dbd2e3849946537a445dd4b1afcf25ebd46"
   dependencies:
     axios "^0.18.0"
     escape-html "^1.0.3"
