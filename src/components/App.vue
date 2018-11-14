@@ -18,6 +18,26 @@
 
     <div id="components-root">
 
+
+
+      <greeting
+        :options = "{
+          'initialMessage': 'happychristmas',
+          'components': [
+            {
+              'type': 'callout',
+              'slots': {
+                'text': 'test 4th of july',
+              },
+            },
+          ]
+        }"
+        :message = "'happyeaster'"
+      >
+    </greeting>
+
+      <!-- <external-link /> -->
+
       <address-input
         :process="'non-mapboard'"
         :widthFromConfig="500"
@@ -27,11 +47,16 @@
       <br>
       <br>
 
-      <configurable-input
+      <!-- :options = "{}" -->
+      <greeting
+        :message="'pizza'"
+      ></greeting>
+
+      <!-- <configurable-input
         :process="'non-mapboard'"
         :widthFromConfig="700"
         :placeholder="'testing configurable input'"
-      />
+      /> -->
       <br>
       <br>
       <br>
@@ -246,6 +271,7 @@
   const BadgeCustom = philaVueComps.BadgeCustom;
   const CollectionSummary = philaVueComps.CollectionSummary;
   const ExternalLink = philaVueComps.ExternalLink;
+  const Greeting = philaVueComps.Greeting;
 
   export default {
     components: {
@@ -258,8 +284,12 @@
       BadgeCustom,
       CollectionSummary,
       ExternalLink,
+      Greeting,
     },
     computed: {
+      computedHtml() {
+        return 'second test text';
+      },
       ownerOptions() {
         const options = {
           id: 'ownerProperties',
