@@ -20,7 +20,7 @@
 
 
 
-      <greeting
+      <!-- <greeting
         :options = "{
           'initialMessage': 'happychristmas',
           'components': [
@@ -34,12 +34,11 @@
         }"
         :message = "'happyeaster'"
       >
-    </greeting>
+    </greeting> -->
 
       <!-- <external-link /> -->
 
       <address-input
-        :process="'non-mapboard'"
         :widthFromConfig="500"
         :placeholder="'testing address input'"
       />
@@ -48,9 +47,9 @@
       <br>
 
       <!-- :options = "{}" -->
-      <greeting
+      <!-- <greeting
         :message="'pizza'"
-      ></greeting>
+      ></greeting> -->
 
       <!-- <configurable-input
         :process="'non-mapboard'"
@@ -147,7 +146,9 @@
         }"
         :options="{
           id: 'liPermits',
+          tableId: 'bbb',
           dataSources: ['liPermits'],
+          mapOverlay: {},
           limit: 5,
           fields: [
             {
@@ -214,6 +215,7 @@
         }"
         :options="{
           id: 'dorDocs',
+          tableId: 'aaa',
           dataSources: ['dorDocuments'],
           limit: 10,
           fields: [
@@ -260,6 +262,7 @@
 </template>
 
 <script>
+  // import generateUniqueId from '../util/unique-id';
   import axios from 'axios';
   import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
   const VerticalTable = philaVueComps.VerticalTable;
@@ -286,6 +289,9 @@
       ExternalLink,
       Greeting,
     },
+    created() {
+
+    },
     computed: {
       computedHtml() {
         return 'second test text';
@@ -293,6 +299,8 @@
       ownerOptions() {
         const options = {
           id: 'ownerProperties',
+          tableId: 'ccc',
+          mapOverlay: {},
           /* dataSources: ['liPermits'], */
           /* limit: 5, */
           fields: [
@@ -345,6 +353,34 @@
         }
         return options;
       }
+    },
+    methods: {
+      // genId() {
+      //   generateUniqueId()
+      // },
+    //   assignTableIds(comps) {
+    //     for (let comp of comps) {
+    //       const options = comp.options || {};
+    //       const innerComps = options.components || options.tables;
+    //
+    //       // if this is a "group" component, recurse
+    //       if (innerComps) {
+    //         assignTableIds(innerComps);
+    //         // return;
+    //       }
+    //
+    //       // skip comps that aren't horizontal tables
+    //       if (comp.type !== 'horizontal-table') {
+    //         continue;
+    //       }
+    //
+    //        const id = generateUniqueId();
+    //        // comp._id = id;
+    //        // the id also needs to get passed to the horizontal table component, so
+    //        // use the options object.
+    //        comp.options.tableId = id;
+    //     }
+    //   }
     }
   };
 </script>

@@ -19,6 +19,17 @@ function createStore(config) {
     addressEntered: null,
     parcels,
     sources,
+    activeFeature: {
+      featureId: null,
+      tableId: null
+    },
+    horizontalTables: {
+      // table id => filtered rows
+      filteredData: {
+
+      },
+      // filteredData: createFilteredData(config),
+    },
   };
 
   const mb = {
@@ -29,6 +40,20 @@ function createStore(config) {
       },
       setAddressEntered(state, payload) {
         state.addressEntered = payload;
+      },
+      setHorizontalTableFilteredData(state, payload) {
+        const { tableId, data } = payload;
+
+        // check for not-null table id
+        if (!tableId) return;
+
+        state.horizontalTables.filteredData[tableId] = data;
+      },
+      setActiveFeature(state, payload) {
+        // console.log('store setActiveFeature is running');
+        const { featureId, tableId } = payload || {};
+        const nextActiveFeature = { featureId, tableId };
+        state.activeFeature = nextActiveFeature;
       },
     }
   }
