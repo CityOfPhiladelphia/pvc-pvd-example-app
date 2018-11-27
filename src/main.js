@@ -7,6 +7,9 @@ _________  __ ____           _________  ____| _/          ____ ___  ________    
 |__|             \/          |__|            \/              \/      \/     \/      \/|__|             \/               \/|__|   |__|
 */
 
+import * as Sentry from '@sentry/browser';
+Sentry.init({ dsn: 'https://50d95ecfebe74b979528fb87fd4755a6@sentry.io/1331993' });
+
 import Vue from 'vue';
 import axios from 'axios';
 import createStore from './store';
