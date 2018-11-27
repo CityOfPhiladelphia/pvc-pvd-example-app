@@ -29,7 +29,6 @@ const baseConfigUrl = config.baseConfig;
 
 function initVue(config) {
   const store = createStore(config);
-
   // make config accessible from each component via this.$config
   Vue.use(configMixin, config);
 
