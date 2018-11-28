@@ -2,11 +2,14 @@ import transforms from './util/transforms';
 import helpers from './util/helpers';
 
 let config = {
-  baseConfig: 'https://cdn.rawgit.com/ajrothwell/atlas_base_config/d95ed79d/config.js',
+  // greeting: {
+  //   initialMessage: 'test test test'
+  // },
+  baseConfig: 'https://cdn.jsdelivr.net/gh/ajrothwell/atlas_base_config@d95ed79deed38e6a59d975bf7aaa5409cdee20bb/config.js',
   gatekeeperKey: '82fe014b6575b8c38b44235580bc8b11',
-  router: {
-    enabled: true
-  },
+  // router: {
+  //   enabled: true
+  // },
   transforms,
   parcels: {
     pwd: {
@@ -27,6 +30,16 @@ let config = {
       parcelIdInGeocoder: 'dor_parcel_id',
       getByLatLngIfIdFails: true
     }
+  },
+  ownerSearch: {
+    url: function (input) {
+      var inputEncoded = encodeURIComponent(input);
+      return '//api.phila.gov/ais/v1/owner/' + inputEncoded;
+    },
+    params: {
+      gatekeeperKey: '82fe014b6575b8c38b44235580bc8b11',
+      include_units: true,
+    },
   },
   dataSources: {
     opa: {

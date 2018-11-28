@@ -530,9 +530,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@cityofphiladelphia/phila-vue-comps@1.0.13":
+"@cityofphiladelphia/phila-vue-comps@https://github.com/CityOfPhiladelphia/phila-vue-comps#f9ea0cf2481ff275fc4b8466269358158ec5003d":
   version "1.0.13"
-  resolved "https://registry.yarnpkg.com/@cityofphiladelphia/phila-vue-comps/-/phila-vue-comps-1.0.13.tgz#9d3cd6e9d1985f292ada9b577ac4194a6d53c66c"
+  resolved "https://github.com/CityOfPhiladelphia/phila-vue-comps#f9ea0cf2481ff275fc4b8466269358158ec5003d"
   dependencies:
     axios "^0.18.0"
     escape-html "^1.0.3"
@@ -543,9 +543,9 @@
     vue "^2.5.16"
     vuex "^3.0.1"
 
-"@cityofphiladelphia/phila-vue-datafetch@0.0.12":
+"@cityofphiladelphia/phila-vue-datafetch@https://github.com/CityOfPhiladelphia/phila-vue-datafetch#5d48f89b486fbe62495c5bac1217aa0300f58eb4":
   version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@cityofphiladelphia/phila-vue-datafetch/-/phila-vue-datafetch-0.0.12.tgz#25af2a260c7badb4170a2cf7c8bffa3b43a880df"
+  resolved "https://github.com/CityOfPhiladelphia/phila-vue-datafetch#5d48f89b486fbe62495c5bac1217aa0300f58eb4"
   dependencies:
     "@turf/turf" "^5.1.6"
     axios "^0.18.0"

@@ -9,7 +9,7 @@
           <div class="app-divide"></div>
           <div class="page-title-container">
             <a href="#/">
-              <h1 class="page-title">PVC-PVD Example App</h1>
+              <h1 class="page-title">Input Example App</h1>
             </a>
           </div>
         </div>
@@ -19,39 +19,64 @@
     <div id="components-root">
 
 
-      <address-input
-        :widthFromConfig="600"
-        :placeholder="'search an address'"
-      />
 
-      <callout
+      <!-- <greeting
+        :options = "{
+          'initialMessage': 'happychristmas',
+          'components': [
+            {
+              'type': 'callout',
+              'slots': {
+                'text': 'test 4th of july',
+              },
+            },
+          ]
+        }"
+        :message = "'happyeaster'"
+      >
+    </greeting> -->
+
+      <!-- <external-link /> -->
+
+      <address-input
+        :widthFromConfig="500"
+        :placeholder="'testing address input'"
       />
-      <!-- :slots="{
-      'text': 'test2'
-    }" -->
+      <br>
+      <br>
+      <br>
+
+      <!-- :options = "{}" -->
+      <!-- <greeting
+        :message="'pizza'"
+      ></greeting> -->
+
+      <!-- <configurable-input
+        :process="'non-mapboard'"
+        :widthFromConfig="700"
+        :placeholder="'testing configurable input'"
+      /> -->
+      <br>
+      <br>
+      <br>
+
 
       <badge
         :slots="{
-            'title': 'test badge',
-        }"
-      />
-
-      <badge-custom
-        :slots="{
-            'title': 'test badge-custom',
-        }"
-        :options="{
-          'components': [
-            {
-              'type': 'callout'
+          title: 'Address or Intersection Found',
+          value: function(state) {
+            if (state.geocode.data) {
+              if (state.geocode.data.ais_feature_type === 'intersection') {
+                return state.geocode.data.street_address
+              } else {
+                return state.geocode.data.properties.street_address
+              }
+            } else {
+              return 'no address yet'
             }
-          ]
-          }"
+          }
+        }"
       />
-
-      <!-- <collection-summary
-        :slots="{}"
-      /> -->
 
 
       <div class="margin-sides-20 component-label">vertical-table:</div>
@@ -97,6 +122,18 @@
       <horizontal-table
         class="margin-20 medium-10"
         :slots="{
+          title: 'Owner Properties',
+          items: function(state) {
+            var data = state.ownerSearch.data;
+            return data;
+          },
+        }"
+        :options="this.ownerOptions"
+      />
+
+      <horizontal-table
+        class="margin-20 medium-10"
+        :slots="{
           title: 'Permits',
           items: function(state) {
             var data = state.sources['liPermits'].data.rows;
@@ -109,7 +146,9 @@
         }"
         :options="{
           id: 'liPermits',
+          tableId: 'bbb',
           dataSources: ['liPermits'],
+          mapOverlay: {},
           limit: 5,
           fields: [
             {
@@ -161,7 +200,6 @@
         }"
       />
 
-
       <horizontal-table
         class="margin-20 medium-10"
         :slots="{
@@ -177,8 +215,9 @@
         }"
         :options="{
           id: 'dorDocs',
+          tableId: 'aaa',
           dataSources: ['dorDocuments'],
-          limit: 2,
+          limit: 10,
           fields: [
             {
               label: 'Doc Type',
@@ -201,8 +240,7 @@
             {
               label: 'Number',
               value: function(state, item){
-                /* return item.attributes.DOCUMENT_ID; */
-                return item.attributes.R_NUM;
+                return item.attributes.DOCUMENT_ID;
               }
             },
           ],
@@ -218,86 +256,161 @@
         }"
       />
 
-      <external-link
-        :slots="{}"
-        :options="{
-          'href': 'https://atlas.phila.gov',
-          'data': {
-              'name': 'text text'
-            }
-          }"
-      />
 
     </div>
   </div>
 </template>
 
 <script>
+  // import generateUniqueId from '../util/unique-id';
   import axios from 'axios';
-
   import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
   const VerticalTable = philaVueComps.VerticalTable;
   const HorizontalTable = philaVueComps.HorizontalTable;
   const AddressInput = philaVueComps.AddressInput;
+  const ConfigurableInput = philaVueComps.ConfigurableInput;
   const Callout = philaVueComps.Callout;
   const Badge = philaVueComps.Badge;
   const BadgeCustom = philaVueComps.BadgeCustom;
   const CollectionSummary = philaVueComps.CollectionSummary;
   const ExternalLink = philaVueComps.ExternalLink;
+  const Greeting = philaVueComps.Greeting;
 
   export default {
     components: {
       VerticalTable,
       HorizontalTable,
       AddressInput,
+      ConfigurableInput,
       Callout,
       Badge,
       BadgeCustom,
       CollectionSummary,
       ExternalLink,
+      Greeting,
     },
-  };
+    created() {
 
+    },
+    computed: {
+      computedHtml() {
+        return 'second test text';
+      },
+      ownerOptions() {
+        const options = {
+          id: 'ownerProperties',
+          tableId: 'ccc',
+          mapOverlay: {},
+          /* dataSources: ['liPermits'], */
+          /* limit: 5, */
+          fields: [
+            {
+              label: 'Owner',
+              value: function(state, item){
+                return item.properties.opa_owners.toString();
+              },
+              /* nullValue: 'no date available', */
+            },
+            {
+              label: 'Street Address',
+              value: function(state, item, controller) {
+                const test = controller.test
+                /* controller.test(); */
+                return `<a target='_blank' href='https://atlas.phila.gov/#/`+item.properties.street_address+`/property'>`+item.properties.street_address+` <i class='fa fa-external-link'></i></a>`
+                // return '<a href=# onclick="'+test+'()">'+item.properties.street_address+' <i class="fa fa-external-link"></i></a>'
+              }
+            },
+            {
+              label: 'Description',
+              value: function(state, item){
+                /* return item.permitdescription */
+              }
+            },
+            {
+              label: 'Status',
+              value: function(state, item){
+                /* return item.status */
+              }
+            },
+          ],
+          /* sort: {
+            getValue: function(item) {
+              return item.permitissuedate;
+            },
+            order: 'desc'
+          }, */
+          /* externalLink: {
+            action: function(count) {
+              return 'See ' + count + ' older permits at L&I Property History';
+              },
+            name: 'L&I Property History',
+            href: function(state) {
+              var address = state.geocode.data.properties.street_address;
+              var addressEncoded = encodeURIComponent(address);
+              return 'http://li.phila.gov/#summary?address=' + addressEncoded;
+            }
+          } */
+        }
+        return options;
+      }
+    },
+    methods: {
+      // genId() {
+      //   generateUniqueId()
+      // },
+    //   assignTableIds(comps) {
+    //     for (let comp of comps) {
+    //       const options = comp.options || {};
+    //       const innerComps = options.components || options.tables;
+    //
+    //       // if this is a "group" component, recurse
+    //       if (innerComps) {
+    //         assignTableIds(innerComps);
+    //         // return;
+    //       }
+    //
+    //       // skip comps that aren't horizontal tables
+    //       if (comp.type !== 'horizontal-table') {
+    //         continue;
+    //       }
+    //
+    //        const id = generateUniqueId();
+    //        // comp._id = id;
+    //        // the id also needs to get passed to the horizontal table component, so
+    //        // use the options object.
+    //        comp.options.tableId = id;
+    //     }
+    //   }
+    }
+  };
 </script>
 
 <style scoped>
-
 #app-root {
   height: 100%
 }
-
 #components-root {
   padding: 20px;
   height: 90%;
   overflow-y: auto;
 }
-
 .component-label {
   font-size: 20px;
 }
-
 .margin-sides-20 {
   display: block;
   margin-left: 20px;
   margin-right: 20px;
 }
-
 .margin-20 {
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
-
 .margin-bottom-60 {
   margin-bottom: 60px !important;
 }
-
 .ib {
   display: inline-block;
 }
-
-
-
-
-
 </style>
