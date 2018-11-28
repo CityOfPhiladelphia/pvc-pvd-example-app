@@ -9,7 +9,7 @@
           <div class="app-divide"></div>
           <div class="page-title-container">
             <a href="#/">
-              <h1 class="page-title">Input Example App</h1>
+              <h1 class="page-title">PVC PVD Example App</h1>
             </a>
           </div>
         </div>
@@ -18,25 +18,23 @@
 
     <div id="components-root">
 
-
-
-      <!-- <greeting
+      <greeting
         :options = "{
-          'initialMessage': 'happychristmas',
           'components': [
             {
               'type': 'callout',
               'slots': {
-                'text': 'test 4th of july',
+                'text': 'this is a callout inside a greeting',
               },
             },
-          ]
+          ],
+          'style': { 'background': '#dce2f3' }
         }"
-        :message = "'happyeaster'"
+        :message = "'this is a greeting with background color #dce2f3'"
       >
-    </greeting> -->
-
-      <!-- <external-link /> -->
+      </greeting>
+      <br>
+      <br>
 
       <address-input
         :widthFromConfig="500"
@@ -44,22 +42,6 @@
       />
       <br>
       <br>
-      <br>
-
-      <!-- :options = "{}" -->
-      <!-- <greeting
-        :message="'pizza'"
-      ></greeting> -->
-
-      <!-- <configurable-input
-        :process="'non-mapboard'"
-        :widthFromConfig="700"
-        :placeholder="'testing configurable input'"
-      /> -->
-      <br>
-      <br>
-      <br>
-
 
       <badge
         :slots="{
@@ -77,7 +59,6 @@
           }
         }"
       />
-
 
       <div class="margin-sides-20 component-label">vertical-table:</div>
       <vertical-table
