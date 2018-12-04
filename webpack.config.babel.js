@@ -2,25 +2,26 @@ const path = require('path');
 const env = process.env.NODE_ENV;
 const isDevelopment = env === 'development';
 
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const Visualizer = require('webpack-visualizer-plugin');
 
 export default {
   entry: {
-    app: ['./src/index.html', './src/main.js'],
+    app: ['./public/index.html', './public/styles.css', './src/main.js'],
   },
   resolve: {
     mainFields: ['module', 'main', 'browser'],
   },
   devtool: isDevelopment ? 'inline-source-map' : 'source-map',
   devServer: {
-    contentBase: './public',
+    contentBase: './dist',
     // host: process.env.WEBPACK_DEV_HOST,
     host: 'localhost',
     // port: process.env.WEBPACK_DEV_PORT
     port: 8082
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     publicPath: '/',
   },
@@ -57,7 +58,8 @@ export default {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new Visualizer({ filename: './statistics.html' })
   ],
   stats: {
       colors: true

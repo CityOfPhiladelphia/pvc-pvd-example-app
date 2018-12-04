@@ -16,7 +16,23 @@
       </div>
     </header>
 
-    <div id="components-root">
+    <div id="components-root"
+         :class="this.topicPanelContainerClass"
+    >
+
+      <test v-if="testIsTrue"/>
+
+      <font-awesome-icon icon="user-secret" />
+      <font-awesome-icon icon="map-marker-alt" />
+
+      <popover-link class="margin-20"
+                    :slots="popoverLink_01_Slots"
+      />
+
+      <popover v-if="popoverOpen && popoverText.length > 0"
+               :slots="{'text': this.popoverText}"
+      />
+      <!-- :options="{ 'height': '100%' }" -->
 
       <greeting
         :options = "{
@@ -35,6 +51,10 @@
       </greeting>
       <br>
       <br>
+
+      <!-- <full-screen-topics-toggle-tab
+        :element-container="'components-root'"
+      /> -->
 
       <address-input
         :widthFromConfig="500"
@@ -245,6 +265,7 @@
 <script>
   // import generateUniqueId from '../util/unique-id';
   import axios from 'axios';
+  // import philaVueMapping from '@cityofphiladelphia/phila-vue-mapping';
   import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
   const VerticalTable = philaVueComps.VerticalTable;
   const HorizontalTable = philaVueComps.HorizontalTable;
@@ -256,9 +277,16 @@
   const CollectionSummary = philaVueComps.CollectionSummary;
   const ExternalLink = philaVueComps.ExternalLink;
   const Greeting = philaVueComps.Greeting;
+  const FullScreenTopicsToggleTab = philaVueComps.FullScreenTopicsToggleTab;
+  const PopoverLink = philaVueComps.PopoverLink;
+  const Popover = philaVueComps.Popover;
+
+  // import test from './test.vue';
 
   export default {
     components: {
+      // test,
+      'test': () => import('./test.vue'),
       VerticalTable,
       HorizontalTable,
       AddressInput,
@@ -269,11 +297,44 @@
       CollectionSummary,
       ExternalLink,
       Greeting,
+      FullScreenTopicsToggleTab,
+      PopoverLink,
+      Popover,
+    },
+    data() {
+      const data = {
+        popoverLink_01_Slots: {
+          value: 'popover-link 1',
+          shouldShowValue: true,
+          popoverPreText: 'this is the popoverPreText for a popover with shouldShowValue: ',
+          popoverPostText: ' - this is the popoverPostText',
+        },
+        testIsTrue: true,
+      }
+      return data;
     },
     created() {
 
     },
     computed: {
+      popoverOpen() {
+        return this.$store.state.popover.open;
+      },
+      popoverText() {
+        return this.$store.state.popover.text;
+      },
+      fullScreenTopicsEnabled() {
+        return this.$store.state.fullScreenTopicsEnabled;
+      },
+      topicPanelContainerClass() {
+        if (this.fullScreenTopicsEnabled || this.fullScreenTopicsOnly) {
+          return 'medium-24 small-order-2 medium-order-1';
+        } else if (this.fullScreenMapEnabled) {
+          return 'medium-1 small-order-2 medium-order-1';
+        } else {
+          return 'medium-12 small-order-2 medium-order-1';
+        }
+      },
       computedHtml() {
         return 'second test text';
       },

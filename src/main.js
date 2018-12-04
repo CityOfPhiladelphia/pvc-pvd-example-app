@@ -18,8 +18,12 @@ import App from './components/App.vue';
 import mergeDeep from './util/merge-deep';
 import config from './config.js'
 
-import '@fortawesome/fontawesome-pro/js/all';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUserSecret } from '@fortawesome/pro-solid-svg-icons/faUserSecret';
+import { faMapMarkerAlt } from '@fortawesome/pro-solid-svg-icons/faMapMarkerAlt';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(faUserSecret, faMapMarkerAlt);
+
 import '../node_modules/phila-standards/dist/css/phila-app.min.css';
 import './styles.css';
 

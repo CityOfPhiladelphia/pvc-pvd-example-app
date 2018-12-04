@@ -10,10 +10,11 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server"
   },
   "dependencies": {
-    "@cityofphiladelphia/phila-vue-comps": "https://github.com/CityOfPhiladelphia/phila-vue-comps#a16c293c4f8ab5bc7f453cb8bac4875bbcfa61e6",
-    "@cityofphiladelphia/phila-vue-datafetch": "https://github.com/CityOfPhiladelphia/phila-vue-datafetch#5d48f89b486fbe62495c5bac1217aa0300f58eb4",
-    "@fortawesome/fontawesome-pro": "^5.5.0",
+    "@cityofphiladelphia/phila-vue-comps": "https://github.com/CityOfPhiladelphia/phila-vue-comps#b83ef8d0c67680a3b9016c8dfd5ab6b3ed3d5f6c",
+    "@cityofphiladelphia/phila-vue-datafetch": "https://github.com/CityOfPhiladelphia/phila-vue-datafetch#fa4f6fc9e08ca3cb3987c95859722617bd189b2f",
+    "@cityofphiladelphia/phila-vue-mapping": "^1.0.11",
     "@fortawesome/fontawesome-svg-core": "^1.2.5",
+    "@fortawesome/pro-solid-svg-icons": "^5.5.0",
     "@fortawesome/vue-fontawesome": "^0.1.2",
     "@sentry/browser": "4.3.4",
     "accounting": "^0.4.1",
@@ -21,10 +22,12 @@
     "moment": "^2.21.0",
     "phila-standards": "^1.0.2",
     "vue": "^2.5.17",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "webpack-visualizer-plugin": "^0.1.11"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.4",
