@@ -27,8 +27,6 @@ library.add(faUserSecret, faMapMarkerAlt);
 import '../node_modules/phila-standards/dist/css/phila-app.min.css';
 import './styles.css';
 
-import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
-console.log('philaVueComps:', philaVueComps);
 import philaVueDatafetch from '@cityofphiladelphia/phila-vue-datafetch';
 const controllerMixin = philaVueDatafetch.controllerMixin;
 

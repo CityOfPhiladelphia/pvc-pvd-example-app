@@ -265,8 +265,6 @@
 </template>
 
 <script>
-  import axios from 'axios';
-
   import { VerticalTable } from '@cityofphiladelphia/phila-vue-comps';
   // const VerticalTable = import('../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue');
 
