@@ -74,8 +74,8 @@ export default {
   devtool: 'source-map',
   // mode: 'production',
   optimization: {
-    providedExports: true,
-    usedExports: true
+    // providedExports: true,
+    // usedExports: true
     // splitChunks: {
     //   cacheGroups: {
     //     vendor: {

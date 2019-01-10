@@ -1,6 +1,5 @@
 {
   "name": "pvc-pvd-example-app",
-  "sideEffects": false,
   "version": "1.0.0",
   "main": "",
   "repository": "https://github.com/CityOfPhiladelphia/pvc-pvd-example-app.git",
@@ -19,7 +18,6 @@
     "@sentry/browser": "4.3.4",
     "accounting": "^0.4.1",
     "axios": "^0.18.0",
-    "moment": "^2.21.0",
     "phila-standards": "^1.0.2",
     "vue": "^2.5.17",
     "vuex": "^3.0.1",
