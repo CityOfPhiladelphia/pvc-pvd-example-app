@@ -1,13 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import mergeDeep from './util/merge-deep';
-import { pvcStore } from '@cityofphiladelphia/phila-vue-comps';
-// import { pvmStore } from '../node_modules/@cityofphiladelphia/phila-vue-mapping/src/main.js';
-// import { Map_ } from '@cityofphiladelphia/phila-vue-mapping';
-// console.log('pvmStore:', pvmStore);
-// console.log('Map_:', Map_);
-import philaVueDatafetch from '@cityofphiladelphia/phila-vue-datafetch'
-const pvdStore = philaVueDatafetch.pvdStore
+import pvcStore from '../node_modules/@cityofphiladelphia/phila-vue-comps/src/store.js';
+import pvdStore from '../node_modules/@cityofphiladelphia/phila-vue-datafetch/src/controller/store.js';
 
 // when you load vuex from a script tag this seems to happen automatically
 Vue.use(Vuex);

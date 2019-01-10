@@ -6,15 +6,17 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 
 export default {
+  mode: 'development',
+  // mode: 'production',
   entry: {
-    app: ['./public/index.html', './public/styles.css', './src/main.js'],
+    app: ['./public/index.html', './src/main.js'],
   },
   resolve: {
     mainFields: ['module', 'main', 'browser'],
   },
   devtool: isDevelopment ? 'inline-source-map' : 'source-map',
   devServer: {
-    contentBase: './dist',
+    contentBase: './public',
     // host: process.env.WEBPACK_DEV_HOST,
     host: 'localhost',
     // port: process.env.WEBPACK_DEV_PORT
@@ -33,11 +35,11 @@ export default {
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              presets: [
-                ['@babel/preset-env', {modules: false} ]
-              ]
-            }
+            // options: {
+            //   presets: [
+            //     ['@babel/preset-env', {modules: false} ]
+            //   ]
+            // }
           }
         ]
       },
@@ -70,7 +72,7 @@ export default {
       colors: true
   },
   devtool: 'source-map',
-  mode: 'production',
+  // mode: 'production',
   optimization: {
     providedExports: true,
     usedExports: true

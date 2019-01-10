@@ -17,8 +17,8 @@
     </header>
 
     <div id="components-root"
-         :class="this.topicPanelContainerClass"
     >
+    <!-- :class="this.topicPanelContainerClass" -->
 
       <!-- <map-panel v-if="false" /> -->
 
@@ -57,15 +57,15 @@
         :element-container="'components-root'"
       /> -->
 
-      <!-- <address-input
+      <address-input
         :widthFromConfig="500"
         :placeholder="'testing address input'"
         name="'test'"
       />
       <br>
-      <br> -->
+      <br>
 
-      <!-- <badge
+      <badge
         :slots="{
           title: 'Address or Intersection Found',
           value: function(state) {
@@ -80,7 +80,7 @@
             }
           }
         }"
-      /> -->
+      />
 
       <div class="margin-sides-20 component-label">vertical-table:</div>
       <vertical-table
@@ -265,13 +265,16 @@
 </template>
 
 <script>
-  import { VerticalTable } from '@cityofphiladelphia/phila-vue-comps';
+
+  import AddressInput from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/AddressInput.vue';
+  import Badge from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/Badge.vue';
+  import VerticalTable from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue';
   // const VerticalTable = import('../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue');
 
   // import {
   //   VerticalTable
   //   // HorizontalTable,
-  //   // AddressInput,
+    // AddressInput,
   //   // ConfigurableInput,
   //   // Callout,
   //   // // Badge,
@@ -290,10 +293,10 @@
       // 'MapPanel': () => import('./MapPanel.vue'),
       VerticalTable,
       // HorizontalTable,
-      // AddressInput,
+      AddressInput,
       // ConfigurableInput,
       // Callout,
-      // // Badge,
+      Badge,
       // // BadgeCustom,
       // CollectionSummary,
       // ExternalLink,
