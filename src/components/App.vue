@@ -20,9 +20,11 @@
          :class="this.topicPanelContainerClass"
     >
 
-      <test v-if="testIsTrue"/>
+      <!-- <map-panel v-if="false" /> -->
 
-      <font-awesome-icon icon="user-secret" />
+      <!-- <test v-if="testIsTrue"/> -->
+
+      <!-- <font-awesome-icon icon="user-secret" />
       <font-awesome-icon icon="map-marker-alt" />
 
       <popover-link class="margin-20"
@@ -31,10 +33,9 @@
 
       <popover v-if="popoverOpen && popoverText.length > 0"
                :slots="{'text': this.popoverText}"
-      />
-      <!-- :options="{ 'height': '100%' }" -->
+      /> -->
 
-      <greeting
+      <!-- <greeting
         :options = "{
           'components': [
             {
@@ -50,20 +51,21 @@
       >
       </greeting>
       <br>
-      <br>
+      <br> -->
 
       <!-- <full-screen-topics-toggle-tab
         :element-container="'components-root'"
       /> -->
 
-      <address-input
+      <!-- <address-input
         :widthFromConfig="500"
         :placeholder="'testing address input'"
+        name="'test'"
       />
       <br>
-      <br>
+      <br> -->
 
-      <badge
+      <!-- <badge
         :slots="{
           title: 'Address or Intersection Found',
           value: function(state) {
@@ -78,7 +80,7 @@
             }
           }
         }"
-      />
+      /> -->
 
       <div class="margin-sides-20 component-label">vertical-table:</div>
       <vertical-table
@@ -118,7 +120,7 @@
         }"
       />
 
-      <div class="margin-sides-20 component-label">horizontal-table:</div>
+      <!-- <div class="margin-sides-20 component-label">horizontal-table:</div>
 
       <horizontal-table
         class="margin-20 medium-10"
@@ -130,9 +132,9 @@
           },
         }"
         :options="this.ownerOptions"
-      />
+      /> -->
 
-      <horizontal-table
+      <!-- <horizontal-table
         class="margin-20 medium-10"
         :slots="{
           title: 'Permits',
@@ -255,7 +257,7 @@
             }
           }
         }"
-      />
+      /> -->
 
 
     </div>
@@ -263,43 +265,58 @@
 </template>
 
 <script>
-  // import generateUniqueId from '../util/unique-id';
   import axios from 'axios';
-  // import philaVueMapping from '@cityofphiladelphia/phila-vue-mapping';
-  import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
-  const VerticalTable = philaVueComps.VerticalTable;
-  const HorizontalTable = philaVueComps.HorizontalTable;
-  const AddressInput = philaVueComps.AddressInput;
-  const ConfigurableInput = philaVueComps.ConfigurableInput;
-  const Callout = philaVueComps.Callout;
-  const Badge = philaVueComps.Badge;
-  const BadgeCustom = philaVueComps.BadgeCustom;
-  const CollectionSummary = philaVueComps.CollectionSummary;
-  const ExternalLink = philaVueComps.ExternalLink;
-  const Greeting = philaVueComps.Greeting;
-  const FullScreenTopicsToggleTab = philaVueComps.FullScreenTopicsToggleTab;
-  const PopoverLink = philaVueComps.PopoverLink;
-  const Popover = philaVueComps.Popover;
 
-  // import test from './test.vue';
+  import { VerticalTable } from '@cityofphiladelphia/phila-vue-comps';
+  // const VerticalTable = import('../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue');
+
+  // import {
+  //   VerticalTable
+  //   // HorizontalTable,
+  //   // AddressInput,
+  //   // ConfigurableInput,
+  //   // Callout,
+  //   // // Badge,
+  //   // // BadgeCustom,
+  //   // CollectionSummary,
+  //   // ExternalLink,
+  //   // Greeting,
+  //   // FullScreenTopicsToggleTab,
+  //   // PopoverLink,
+  //   // Popover
+  // } from '@cityofphiladelphia/phila-vue-comps';
 
   export default {
     components: {
-      // test,
-      'test': () => import('./test.vue'),
+      // 'test': () => import('./test.vue'),
+      // 'MapPanel': () => import('./MapPanel.vue'),
       VerticalTable,
-      HorizontalTable,
-      AddressInput,
-      ConfigurableInput,
-      Callout,
-      Badge,
-      BadgeCustom,
-      CollectionSummary,
-      ExternalLink,
-      Greeting,
-      FullScreenTopicsToggleTab,
-      PopoverLink,
-      Popover,
+      // HorizontalTable,
+      // AddressInput,
+      // ConfigurableInput,
+      // Callout,
+      // // Badge,
+      // // BadgeCustom,
+      // CollectionSummary,
+      // ExternalLink,
+      // Greeting,
+      // FullScreenTopicsToggleTab,
+      // PopoverLink,
+      // Popover
+      // 'LegendControl': () => import('../../node_modules/@cityofphiladelphia/phila-vue-mapping/src/components/LegendControl.vue'),
+      // VerticalTable: () => import('@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue'),
+      // HorizontalTable: () => import('@cityofphiladelphia/phila-vue-comps/src/components/HorizontalTable.vue'),
+      // AddressInput: () => import('@cityofphiladelphia/phila-vue-comps/src/components/AddressInput.vue'),
+      // ConfigurableInput: () => import('@cityofphiladelphia/phila-vue-comps/src/components/ConfigurableInput.vue'),
+      // Callout: () => import('@cityofphiladelphia/phila-vue-comps/src/components/Callout.vue'),
+      // Badge: () => import('@cityofphiladelphia/phila-vue-comps/src/components/Badge.vue'),
+      // BadgeCustom: () => import('@cityofphiladelphia/phila-vue-comps/src/components/BadgeCustom.vue'),
+      // CollectionSummary: () => import('@cityofphiladelphia/phila-vue-comps/src/components/CollectionSummary.vue'),
+      // ExternalLink: () => import('@cityofphiladelphia/phila-vue-comps/src/components/ExternalLink.vue'),
+      // Greeting: () => import('@cityofphiladelphia/phila-vue-comps/src/components/Greeting.vue'),
+      // FullScreenTopicsToggleTab: () => import('@cityofphiladelphia/phila-vue-comps/src/components/FullScreenTopicsToggleTab.vue'),
+      // PopoverLink: () => import('@cityofphiladelphia/phila-vue-comps/src/components/PopoverLink.vue'),
+      // Popover: () => import('@cityofphiladelphia/phila-vue-comps/src/components/Popover.vue'),
     },
     data() {
       const data = {
@@ -309,7 +326,7 @@
           popoverPreText: 'this is the popoverPreText for a popover with shouldShowValue: ',
           popoverPostText: ' - this is the popoverPostText',
         },
-        testIsTrue: true,
+        testIsTrue: false,
       }
       return data;
     },

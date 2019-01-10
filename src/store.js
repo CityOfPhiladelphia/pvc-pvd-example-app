@@ -1,8 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import mergeDeep from './util/merge-deep';
-import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
-const pvcStore = philaVueComps.pvcStore
+import { pvcStore } from '@cityofphiladelphia/phila-vue-comps';
+// import { pvmStore } from '../node_modules/@cityofphiladelphia/phila-vue-mapping/src/main.js';
+// import { Map_ } from '@cityofphiladelphia/phila-vue-mapping';
+// console.log('pvmStore:', pvmStore);
+// console.log('Map_:', Map_);
 import philaVueDatafetch from '@cityofphiladelphia/phila-vue-datafetch'
 const pvdStore = philaVueDatafetch.pvdStore
 
@@ -59,10 +62,11 @@ function createStore(config) {
   }
 
   // let mergeStore = mb;
-  let mergeStore = mergeDeep(pvcStore, pvdStore.store);
+  let mergeStore = mergeDeep(pvdStore.store, pvcStore);
+  // mergeStore = mergeDeep(mergeStore, pvmStore);
   mergeStore = mergeDeep(mergeStore, mb);
 
-  console.log('mergeStore:', mergeStore);
+  // console.log('mergeStore:', mergeStore);
 
   // TODO standardize how payloads are passed around/handled
   return new Vuex.Store({

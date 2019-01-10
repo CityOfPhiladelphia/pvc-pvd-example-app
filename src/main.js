@@ -7,8 +7,8 @@ _________  __ ____           _________  ____| _/          ____ ___  ________    
 |__|             \/          |__|            \/              \/      \/     \/      \/|__|             \/               \/|__|   |__|
 */
 
-import * as Sentry from '@sentry/browser';
-Sentry.init({ dsn: 'https://50d95ecfebe74b979528fb87fd4755a6@sentry.io/1331993' });
+// import * as Sentry from '@sentry/browser';
+// Sentry.init({ dsn: 'https://50d95ecfebe74b979528fb87fd4755a6@sentry.io/1331993' });
 
 import Vue from 'vue';
 import axios from 'axios';
@@ -28,6 +28,7 @@ import '../node_modules/phila-standards/dist/css/phila-app.min.css';
 import './styles.css';
 
 import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
+console.log('philaVueComps:', philaVueComps);
 import philaVueDatafetch from '@cityofphiladelphia/phila-vue-datafetch';
 const controllerMixin = philaVueDatafetch.controllerMixin;
 
