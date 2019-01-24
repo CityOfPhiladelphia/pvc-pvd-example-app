@@ -120,7 +120,7 @@
         }"
       />
 
-      <!-- <div class="margin-sides-20 component-label">horizontal-table:</div>
+      <div class="margin-sides-20 component-label">horizontal-table:</div>
 
       <horizontal-table
         class="margin-20 medium-10"
@@ -132,9 +132,9 @@
           },
         }"
         :options="this.ownerOptions"
-      /> -->
+      />
 
-      <!-- <horizontal-table
+      <horizontal-table
         class="margin-20 medium-10"
         :slots="{
           title: 'Permits',
@@ -257,7 +257,7 @@
             }
           }
         }"
-      /> -->
+      />
 
 
     </div>
@@ -266,33 +266,33 @@
 
 <script>
 
-  import AddressInput from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/AddressInput.vue';
-  import Badge from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/Badge.vue';
-  import VerticalTable from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue';
+  // import AddressInput from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/AddressInput.vue';
+  // import Badge from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/Badge.vue';
+  // import VerticalTable from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue';
   // const VerticalTable = import('../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue');
 
-  // import {
-  //   VerticalTable
-  //   // HorizontalTable,
-    // AddressInput,
-  //   // ConfigurableInput,
-  //   // Callout,
-  //   // // Badge,
-  //   // // BadgeCustom,
-  //   // CollectionSummary,
-  //   // ExternalLink,
-  //   // Greeting,
-  //   // FullScreenTopicsToggleTab,
-  //   // PopoverLink,
-  //   // Popover
-  // } from '@cityofphiladelphia/phila-vue-comps';
+  import {
+    VerticalTable,
+    HorizontalTable,
+    AddressInput,
+    // ConfigurableInput,
+    // Callout,
+    Badge,
+    // // BadgeCustom,
+    // CollectionSummary,
+    // ExternalLink,
+    Greeting,
+    // FullScreenTopicsToggleTab,
+    // PopoverLink,
+    // Popover
+  } from '@cityofphiladelphia/phila-vue-comps';
 
   export default {
     components: {
       // 'test': () => import('./test.vue'),
       // 'MapPanel': () => import('./MapPanel.vue'),
       VerticalTable,
-      // HorizontalTable,
+      HorizontalTable,
       AddressInput,
       // ConfigurableInput,
       // Callout,
@@ -300,7 +300,7 @@
       // // BadgeCustom,
       // CollectionSummary,
       // ExternalLink,
-      // Greeting,
+      Greeting,
       // FullScreenTopicsToggleTab,
       // PopoverLink,
       // Popover
