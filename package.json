@@ -1,7 +1,7 @@
 {
   "name": "pvc-pvd-example-app",
   "version": "1.0.0",
-  "main": "",
+  "main": "./dist/app.js",
   "repository": "https://github.com/CityOfPhiladelphia/pvc-pvd-example-app.git",
   "author": "andy.rothwell <rothwell.andy@gmail.com>",
   "license": "MIT",
