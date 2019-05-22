@@ -18,17 +18,13 @@ import App from './components/App.vue';
 import mergeDeep from './util/merge-deep';
 import config from './config.js'
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret } from '@fortawesome/pro-solid-svg-icons/faUserSecret';
-import { faMapMarkerAlt } from '@fortawesome/pro-solid-svg-icons/faMapMarkerAlt';
+import * as faAll from './fa.js';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faUserSecret, faMapMarkerAlt);
 
 import '../node_modules/phila-standards/dist/css/phila-app.min.css';
 import './styles.css';
 
-import philaVueDatafetch from '@cityofphiladelphia/phila-vue-datafetch';
-const controllerMixin = philaVueDatafetch.controllerMixin;
+import controllerMixin from '@philly/vue-datafetch/src/controller/index.js';
 
 const clientConfig = config;
 const baseConfigUrl = config.baseConfig;

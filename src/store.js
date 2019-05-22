@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import mergeDeep from './util/merge-deep';
-import pvcStore from '../node_modules/@cityofphiladelphia/phila-vue-comps/src/store.js';
-import pvdStore from '../node_modules/@cityofphiladelphia/phila-vue-datafetch/src/controller/store.js';
+import pvdStore from '@philly/vue-datafetch/src/controller/store';
+import pvcStore from '@philly/vue-comps/src/store';
 
 // when you load vuex from a script tag this seems to happen automatically
 Vue.use(Vuex);

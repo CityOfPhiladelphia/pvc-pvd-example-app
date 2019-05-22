@@ -18,44 +18,6 @@
 
     <div id="components-root"
     >
-    <!-- :class="this.topicPanelContainerClass" -->
-
-      <!-- <map-panel v-if="false" /> -->
-
-      <!-- <test v-if="testIsTrue"/> -->
-
-      <!-- <font-awesome-icon icon="user-secret" />
-      <font-awesome-icon icon="map-marker-alt" />
-
-      <popover-link class="margin-20"
-                    :slots="popoverLink_01_Slots"
-      />
-
-      <popover v-if="popoverOpen && popoverText.length > 0"
-               :slots="{'text': this.popoverText}"
-      /> -->
-
-      <!-- <greeting
-        :options = "{
-          'components': [
-            {
-              'type': 'callout',
-              'slots': {
-                'text': 'this is a callout inside a greeting',
-              },
-            },
-          ],
-          'style': { 'background': '#dce2f3' }
-        }"
-        :message = "'this is a greeting with background color #dce2f3'"
-      >
-      </greeting>
-      <br>
-      <br> -->
-
-      <!-- <full-screen-topics-toggle-tab
-        :element-container="'components-root'"
-      /> -->
 
       <address-input
         :widthFromConfig="500"
@@ -174,6 +136,10 @@
               label: 'Description',
               value: function(state, item){
                 return item.permitdescription
+              },
+              popoverLink: true,
+              popoverPreText: function(state, item) {
+                return ''
               }
             },
             {
@@ -226,7 +192,11 @@
               label: 'Doc Type',
               value: function(state, item){
                 return item.attributes.DOCUMENT_TYPE;
-              }
+              },
+              popoverLink: true,
+              popoverTransforms: [
+                'bold',
+              ]
             },
             {
               label: 'Grantors',
@@ -247,7 +217,7 @@
               }
             },
           ],
-          externalLink: {
+          /* externalLink: {
             action: function(count) {
               return 'See ' + count + ' older DorDocs at Atlas';
             },
@@ -255,8 +225,23 @@
             href: function(state) {
               return 'https://atlas.phila.gov/';
             }
-          }
+          } */
         }"
+      />
+      <popover-link
+                    :options="{
+                      height: '92%',
+                      customStyle: { 'color': 'red', 'border-bottom': '0px' }
+                    }"
+                    :slots="{
+                      shouldShowValue: true,
+                      value: 'Test'
+                    }"
+      />
+      <popover
+               v-if="popoverOpen"
+               :options="this.popoverOptions"
+               :slots="{'text': this.popoverText}"
       />
 
 
@@ -266,58 +251,16 @@
 
 <script>
 
-  // import AddressInput from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/AddressInput.vue';
-  // import Badge from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/Badge.vue';
-  // import VerticalTable from '../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue';
-  // const VerticalTable = import('../../node_modules/@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue');
-
-  import {
-    VerticalTable,
-    HorizontalTable,
-    AddressInput,
-    // ConfigurableInput,
-    // Callout,
-    Badge,
-    // // BadgeCustom,
-    // CollectionSummary,
-    // ExternalLink,
-    Greeting,
-    // FullScreenTopicsToggleTab,
-    // PopoverLink,
-    // Popover
-  } from '@cityofphiladelphia/phila-vue-comps';
 
   export default {
     components: {
-      // 'test': () => import('./test.vue'),
-      // 'MapPanel': () => import('./MapPanel.vue'),
-      VerticalTable,
-      HorizontalTable,
-      AddressInput,
-      // ConfigurableInput,
-      // Callout,
-      Badge,
-      // // BadgeCustom,
-      // CollectionSummary,
-      // ExternalLink,
-      Greeting,
-      // FullScreenTopicsToggleTab,
-      // PopoverLink,
-      // Popover
-      // 'LegendControl': () => import('../../node_modules/@cityofphiladelphia/phila-vue-mapping/src/components/LegendControl.vue'),
-      // VerticalTable: () => import('@cityofphiladelphia/phila-vue-comps/src/components/VerticalTable.vue'),
-      // HorizontalTable: () => import('@cityofphiladelphia/phila-vue-comps/src/components/HorizontalTable.vue'),
-      // AddressInput: () => import('@cityofphiladelphia/phila-vue-comps/src/components/AddressInput.vue'),
-      // ConfigurableInput: () => import('@cityofphiladelphia/phila-vue-comps/src/components/ConfigurableInput.vue'),
-      // Callout: () => import('@cityofphiladelphia/phila-vue-comps/src/components/Callout.vue'),
-      // Badge: () => import('@cityofphiladelphia/phila-vue-comps/src/components/Badge.vue'),
-      // BadgeCustom: () => import('@cityofphiladelphia/phila-vue-comps/src/components/BadgeCustom.vue'),
-      // CollectionSummary: () => import('@cityofphiladelphia/phila-vue-comps/src/components/CollectionSummary.vue'),
-      // ExternalLink: () => import('@cityofphiladelphia/phila-vue-comps/src/components/ExternalLink.vue'),
-      // Greeting: () => import('@cityofphiladelphia/phila-vue-comps/src/components/Greeting.vue'),
-      // FullScreenTopicsToggleTab: () => import('@cityofphiladelphia/phila-vue-comps/src/components/FullScreenTopicsToggleTab.vue'),
-      // PopoverLink: () => import('@cityofphiladelphia/phila-vue-comps/src/components/PopoverLink.vue'),
-      // Popover: () => import('@cityofphiladelphia/phila-vue-comps/src/components/Popover.vue'),
+      VerticalTable: () => import(/* webpackChunkName: "pvc_VerticalTable" */'@philly/vue-comps/src/components/VerticalTable.vue'),
+      HorizontalTable: () => import(/* webpackChunkName: "pvc_HorizontalTable" */'@philly/vue-comps/src/components/HorizontalTable.vue'),
+      AddressInput: () => import(/* webpackChunkName: "pvc_AddressInput" */'@philly/vue-comps/src/components/AddressInput.vue'),
+      Badge: () => import(/* webpackChunkName: "pvc_Badge" */'@philly/vue-comps/src/components/Badge.vue'),
+      Greeting: () => import(/* webpackChunkName: "pvc_Greeting" */'@philly/vue-comps/src/components/Greeting.vue'),
+      Popover: () => import(/* webpackChunkName: "mbmb_pvc_Popover" */'@philly/vue-comps/src/components/Popover.vue'),
+      PopoverLink: () => import(/* webpackChunkName: "mbmb_pvc_PopoverLink" */'@philly/vue-comps/src/components/PopoverLink.vue'),
     },
     data() {
       const data = {
@@ -340,6 +283,9 @@
       },
       popoverText() {
         return this.$store.state.popover.text;
+      },
+      popoverOptions() {
+        return this.$store.state.popover.options;
       },
       fullScreenTopicsEnabled() {
         return this.$store.state.fullScreenTopicsEnabled;
